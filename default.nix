@@ -28,7 +28,7 @@ mkDerivation rec {
       fetchzip
         {
           url = "https://github.com/haskell/haskell-language-server/releases/download/${version}/haskell-language-server-macOS-${version}.tar.gz";
-          sha256 = "0000000000000000000000000000000000000000000000000000";
+          sha256 = "PXv8k7GebeHHsqOlgju2NIrubApg8JK8OpRNDevTqqU=";
           stripRoot = false;
         }
     else
