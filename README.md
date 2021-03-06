@@ -14,8 +14,7 @@ Language Server in a `shell.nix` file.
 below might not be the latest version!
 
 Remember to check the latest revision and update it if necessary, substituting
-the `sha256` value with `pkgs.lib.fakeSha256` if necessary to get the latest
-SHA256 hash.
+the `sha256` value with `pkgs.lib.fakeSha256` to get the latest SHA256 hash.
 
 ```nix
 { pkgs ? import <nixpkgs> { } }:
