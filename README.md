@@ -24,8 +24,8 @@ let
   easy-hls-src = fetchFromGitHub {
     owner  = "jkachmar";
     repo   = "easy-hls-nix";
-    rev    = "";
-    sha256 = "";
+    rev    = "f2ef4a9c3ab6a54c30f80503d97cb5a617fc6e1a";
+    sha256 = "QiYwfVR2gieFhZBGAeZ74j7HkH5165bgXT9t2iMoRlM=";
   };
   easy-hls = callPackage easy-hls-src {};
 in
