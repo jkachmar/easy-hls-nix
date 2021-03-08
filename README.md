@@ -98,4 +98,4 @@ and add `pkgs.hls` in your devshell
 
 you can do `which  haskell-language-server-wrapper` to verify `haskell-language-server` is in your devshell path
 
-Here is a full [https://github.com/yuanw/blog/blob/e806c005e634a1cb81caffaef2294351c2531f47/flake.nix](example) using `easy-hls-nix` with Nix Flakes
+Here is a [example](https://github.com/yuanw/blog/blob/e806c005e634a1cb81caffaef2294351c2531f47/flake.nix) using `easy-hls-nix` with Nix Flakes
