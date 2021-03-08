@@ -64,3 +64,38 @@ Contributors familiar with Nix Flakes are welcome to use it directly (via
 `nix profile` or their own `flake.nix` file) and invited to contribute
 user-friendly documentation if they find Flakes support to be particularly
 helpful.
+
+#### One poissble way
+add `easy-hls-nix` as your flake input
+
+``` nix
+inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/release-20.09";
+    easy-hls.url = "github:yuanw/easy-hls-nix/overlay";
+    easy-hls.inputs.nixpkgs.follows = "nixpkgs";
+  };
+```
+
+add `haskell-language-server` in your flake (or one of the) overlay,and import overlay into our instance of nixpkgs. 
+
+``` nix
+  let
+      overlay = final: prev: {
+        hls = (final.callPackage easy-hls { });
+      };
+    in {
+     inherit overlay;
+    }  } // flake-utils.lib.eachDefaultSystem (system:
+      let
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [
+            overlay
+          ];
+        };
+```
+and add `pkgs.hls` in your devshell
+
+you can do `which  haskell-language-server-wrapper` to verify `haskell-language-server` is in your devshell path
+
+Here is a full [https://github.com/yuanw/blog/blob/e806c005e634a1cb81caffaef2294351c2531f47/flake.nix](example) using `easy-hls-nix` with Nix Flakes
