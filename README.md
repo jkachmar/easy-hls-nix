@@ -71,7 +71,7 @@ add `easy-hls-nix` as your flake input
 ``` nix
 inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/release-20.09";
-    easy-hls.url = "github:yuanw/easy-hls-nix/overlay";
+    easy-hls.url = "github:jkachmar/easy-hls-nix/overlay";
     easy-hls.inputs.nixpkgs.follows = "nixpkgs";
   };
 ```
