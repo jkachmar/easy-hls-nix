@@ -2,6 +2,14 @@
 
 Easy Haskell Language Server tooling with Nix!
 
+**NOTE**: There's currently an open issue relating to Template Haskell on Linux/NixOS.
+
+
+I have a few ideas for a fix, but I haven't gotten the chance to try them out yet
+so some things might not work as-expected; macOS users are unaffected by this bug.
+
+cf. [jkachmar/easy-hls-nix#2](https://github.com/jkachmar/easy-hls-nix/issues/2) for details
+
 ## Example Usage
 
 ### Quickstart
