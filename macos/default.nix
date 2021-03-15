@@ -17,6 +17,7 @@ stdenv.mkDerivation {
     ${lib.concatMapStringsSep "\n"
       (hlsBin: ''
         binPath="$out/bin/haskell-language-server-${hlsBin}"
+
         # Install HLS
         install -D -m555 -T "haskell-language-server-${hlsBin}" "$binPath"
         rm "haskell-language-server-${hlsBin}"

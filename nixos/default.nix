@@ -98,16 +98,35 @@ in
 mkDerivation {
   inherit pname version meta;
 
-  phases = "buildPhase";
-  buildPhase = ''
-    runHook preBuild
+  nativeBuildInputs = [ installShellFiles ];
+  phases = "installPhase fixupPhase";
+  dontPatchELF = true;
+
+  installPhase = ''
+    runHook preInstall
 
     mkdir -p $out/bin
 
     for name in $(ls ${installationBinDir}); do
-      ln -s ${frontendScript} $out/bin/$name
+      binPath="$out/bin/$name"
+      ln -s ${frontendScript} $binPath
+
+      # Install bash completions.
+      $binPath --bash-completion-script $binPath > "$name.bash"
+      installShellCompletion --bash "$name.bash"
+      rm "$name.bash"
+
+      # Install zsh completions.
+      $binPath --zsh-completion-script $binPath > "$name.zsh"
+      installShellCompletion --zsh "$name.zsh"
+      rm "$name.zsh"
+
+      # Install fish completions.
+      $binPath --fish-completion-script $binPath > "$name.fish"
+      installShellCompletion --fish "$name.fish"
+      rm "$name.fish"
     done
 
-    runHook postBuild
+    runHook postInstall
   '';
 }
