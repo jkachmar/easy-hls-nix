@@ -1,5 +1,6 @@
 { callPackage
 , fetchzip
+, lib
 , stdenv
   # Optional override for the HLS binaries to support specific GHC versions.
 , ghcVersions ? [
@@ -23,13 +24,13 @@ let
 
   pname = "haskell-language-server";
   version = "1.0.0";
-  meta = with stdenv.lib; {
+  meta = {
     description = ''
       A language server that provides information about Haskell programs to
       IDEs, editors, and other tools.
     '';
     homepage = "https://github.com/haskell/haskell-language-server";
-    license = licenses.asl20; # Apache-2.0 license.
+    license = lib.licenses.asl20; # Apache-2.0 license.
     maintainers = [ ];
 
     platforms = [ "x86_64-darwin" "x86_64-linux" ];
