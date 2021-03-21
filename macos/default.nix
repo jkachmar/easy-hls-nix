@@ -1,4 +1,5 @@
 { installShellFiles
+, lib
 , stdenv
   # Arguments from `easy-hls-nix` derivation entrypoint.
 , hlsBins
