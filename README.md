@@ -2,14 +2,6 @@
 
 Easy Haskell Language Server tooling with Nix!
 
-**NOTE**: There's currently an open issue relating to Template Haskell on Linux/NixOS.
-
-
-I have a few ideas for a fix, but I haven't gotten the chance to try them out yet
-so some things might not work as-expected; macOS users are unaffected by this bug.
-
-cf. [jkachmar/easy-hls-nix#2](https://github.com/jkachmar/easy-hls-nix/issues/2) for details
-
 ## Example Usage
 
 ### Quickstart
@@ -31,8 +23,8 @@ let
   easy-hls-src = fetchFromGitHub {
     owner  = "jkachmar";
     repo   = "easy-hls-nix";
-    rev    = "b0ceb9277963eb39a8bb279f187e38b36d7d63db";
-    sha256 = "1UD7GIHLZyJueRMPpUiV1SoeBEwFyz6tgCRijDvfWkU=";
+    rev    = "9be115c30bc8544f3838e4e5cb55c88d87c209eb";
+    sha256 = "5qQ+lkHLF/dd3NUUBILG4DpcalBQUZhJM4XlFkwMG7M=";
   };
   easy-hls = callPackage easy-hls-src {};
 in
