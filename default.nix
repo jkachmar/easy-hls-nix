@@ -23,7 +23,7 @@ let
   #############################################################################
 
   pname = "haskell-language-server";
-  version = "1.0.0";
+  version = "1.1.0";
   meta = {
     description = ''
       A language server that provides information about Haskell programs to
@@ -44,7 +44,7 @@ let
     inherit hlsBins pname version meta;
     src = fetchzip {
       url = "https://github.com/haskell/haskell-language-server/releases/download/${version}/haskell-language-server-macOS-${version}.tar.gz";
-      sha256 = "PXv8k7GebeHHsqOlgju2NIrubApg8JK8OpRNDevTqqU=";
+      sha256 = "/eU01InuS1DkD0uv6DMQQGB3mhNKHghy0uzm66jsd7Q=";
       stripRoot = false;
     };
   };
