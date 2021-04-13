@@ -23,7 +23,7 @@ let
     name = "${name}-installer";
     inherit src;
 
-    # HLS Linux executables are statically linked, and therefore canot be patched
+    # HLS Linux executables are statically linked, and therefore cannot be patched
     # on Linux.
     dontPatchELF = isLinux;
     # Don't attempt to examine RPATHs on Linux; this causes spurious `patchelf`
