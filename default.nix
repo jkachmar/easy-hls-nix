@@ -53,7 +53,7 @@ let
     inherit hlsBins pname version meta;
     src = fetchzip {
       url = "https://github.com/haskell/haskell-language-server/releases/download/${version}/haskell-language-server-Linux-${version}.tar.gz";
-      sha256 = "oncBl94KOFjsg22mgxucAxa4T5Hq1SjmsGQ3yXXidjI=";
+      sha256 = "nCFQhGG7K1Q7Q+C6z9Zdbc0MfQOd2bp/MYMXbwVffIw=";
       stripRoot = false;
     };
   };
