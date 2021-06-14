@@ -23,8 +23,8 @@ let
   easy-hls-src = fetchFromGitHub {
     owner  = "jkachmar";
     repo   = "easy-hls-nix";
-    rev    = "0cc4e5893a3e1de3456e3c91bc8dfdebad249dc1";
-    sha256 = "nu3HCXSie7yfMhj2h7wCtsEYTrzrBiVE7kdFg0SsV8o=";
+    rev    = "20451bf65497fe9f8a972671e9925bd41e7ee15e";
+    sha256 = "Yd99o51HlzSYIKIMrYfdcumDyQ3Fz0S+r7G5PcCtXOM=";
   };
   easy-hls = callPackage easy-hls-src {};
 in
