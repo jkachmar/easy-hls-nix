@@ -44,7 +44,7 @@ let
     inherit hlsBins pname version meta;
     src = fetchzip {
       url = "https://github.com/haskell/haskell-language-server/releases/download/${version}/haskell-language-server-macOS-${version}.tar.gz";
-      sha256 = lib.fakeSha256;
+      sha256 = "NmIH9FDZeefVKbGSYLcKg8bKsRzKCA0esU8qI/27SQ0=";
       stripRoot = false;
     };
   };
