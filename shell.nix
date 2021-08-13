@@ -1,6 +1,10 @@
 { pkgs ? import <nixpkgs> { } }:
 let
-  easy-hls = pkgs.callPackage ./default.nix { };
+  easy-hls =
+      if pkgs.isDarwin
+      then (pkgs.callPackage ./default.nix { }).macosDrv
+      else (pkgs.callPackage ./default.nix { }).nixosDrv;
+
 in
 
 pkgs.mkShell {

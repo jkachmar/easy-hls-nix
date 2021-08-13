@@ -7,7 +7,7 @@
   outputs = { self, nixpkgs }: {
     defaultPackage.x86_64-linux =
       let pkgs = import nixpkgs { system = "x86_64-linux"; };
-      in pkgs.callPackage ./default.nix { };
+      in (pkgs.callPackage ./default.nix { }).nixosDrv;
     defaultApp.x86_64-linux = {
       type = "app";
       program = "${self.defaultPackage.x86_64-linux}/bin/haskell-language-server-wrapper";
@@ -18,7 +18,7 @@
 
     defaultPackage.x86_64-darwin =
       let pkgs = import nixpkgs { system = "x86_64-darwin"; };
-      in pkgs.callPackage ./default.nix { };
+      in (pkgs.callPackage ./default.nix { }).macosDrv;
     defaultApp.x86_64-darwin = {
       type = "app";
       program = "${self.defaultPackage.x86_64-darwin}/bin/haskell-language-server-wrapper";

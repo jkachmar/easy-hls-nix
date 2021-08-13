@@ -6,12 +6,13 @@
 , ghcVersions ? [
     "8.6.4"
     "8.6.5"
-    "8.8.2"
     "8.8.3"
     "8.8.4"
     "8.10.2"
     "8.10.3"
     "8.10.4"
+    "8.10.5"
+    "9.0.1"
   ]
 }:
 let
@@ -23,7 +24,7 @@ let
   #############################################################################
 
   pname = "haskell-language-server";
-  version = "1.2.0";
+  version = "1.3.0";
   meta = {
     description = ''
       A language server that provides information about Haskell programs to
@@ -40,25 +41,27 @@ let
   # Platform-Specific Derivations
   #############################################################################
 
-  macosDrv = callPackage ./macos {
-    inherit hlsBins pname version meta;
-    src = fetchzip {
-      url = "https://github.com/haskell/haskell-language-server/releases/download/${version}/haskell-language-server-macOS-${version}.tar.gz";
-      sha256 = "NmIH9FDZeefVKbGSYLcKg8bKsRzKCA0esU8qI/27SQ0=";
-      stripRoot = false;
-    };
+in rec {
+  nixosSrc = fetchzip {
+    url = "https://github.com/haskell/haskell-language-server/releases/download/${version}/haskell-language-server-Linux-${version}.tar.gz";
+    sha256 = "02p1dxhbnh3q8x61fhqfvhnlqgyxzf98zj1hjjk32g1sz9hgdf6r";
+    stripRoot = false;
   };
 
   nixosDrv = callPackage ./nixos {
     inherit hlsBins pname version meta;
-    src = fetchzip {
-      url = "https://github.com/haskell/haskell-language-server/releases/download/${version}/haskell-language-server-Linux-${version}.tar.gz";
-      sha256 = "k9IPYrH39Iz4DlgMJgFHBDNiyZicu8lM2rrktzxTWEo=";
-      stripRoot = false;
-    };
+    src = nixosSrc;
   };
-in
 
-if isDarwin
-then macosDrv
-else nixosDrv
+  macosSrc = fetchzip {
+    url = "https://github.com/haskell/haskell-language-server/releases/download/${version}/haskell-language-server-macOS-${version}.tar.gz";
+    sha256 = "0mga2m7qx898szfq4w04a3ji7gwh4jm6zasq4xky7c7hwkmr9y5s";
+    stripRoot = false;
+  };
+
+  macosDrv = callPackage ./macos {
+    inherit hlsBins pname version meta;
+    src = macosSrc;
+  };
+
+}
