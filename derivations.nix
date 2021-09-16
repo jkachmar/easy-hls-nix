@@ -12,6 +12,8 @@
     "8.10.3"
     "8.10.4"
     "8.10.5"
+    "8.10.6"
+    "8.10.7"
     "9.0.1"
   ]
 }:
@@ -24,7 +26,7 @@ let
   #############################################################################
 
   pname = "haskell-language-server";
-  version = "1.3.0";
+  version = "1.4.0";
   meta = {
     description = ''
       A language server that provides information about Haskell programs to
@@ -45,7 +47,7 @@ rec {
   #############################################################################
   nixosSrc = fetchzip {
     url = "https://github.com/haskell/haskell-language-server/releases/download/${version}/haskell-language-server-Linux-${version}.tar.gz";
-    sha256 = "02p1dxhbnh3q8x61fhqfvhnlqgyxzf98zj1hjjk32g1sz9hgdf6r";
+    sha256 = "1vzacm4pg6wqxz818zrki9rfswvvk9bcaz4bs88vgi8wljsq5y4w";
     stripRoot = false;
   };
 
@@ -56,7 +58,7 @@ rec {
 
   macosSrc = fetchzip {
     url = "https://github.com/haskell/haskell-language-server/releases/download/${version}/haskell-language-server-macOS-${version}.tar.gz";
-    sha256 = "0mga2m7qx898szfq4w04a3ji7gwh4jm6zasq4xky7c7hwkmr9y5s";
+    sha256 = "19aj9xacf0qpzhx197cbrc2h3ws8g9kz0p56dmnhsngiy1gsk2gy";
     stripRoot = false;
   };
 
