@@ -15,6 +15,9 @@
     devShell.x86_64-linux = import ./shell.nix {
       pkgs = import nixpkgs { system = "x86_64-linux"; };
     };
+    withGhcs.x86_64-linux = ghcVersions:
+      let pkgs = import nixpkgs { system = "x86_64-linux"; };
+      in (pkgs.callPackage ./derivations.nix { inherit ghcVersions; }).nixosDrv;
 
     defaultPackage.x86_64-darwin =
       let pkgs = import nixpkgs { system = "x86_64-darwin"; };
@@ -26,5 +29,8 @@
     devShell.x86_64-darwin = import ./shell.nix {
       pkgs = import nixpkgs { system = "x86_64-darwin"; };
     };
+    withGhcs.x86_64-darwin = ghcVersions:
+      let pkgs = import nixpkgs { system = "x86_64-darwin"; };
+      in (pkgs.callPackage ./derivations.nix { inherit ghcVersions; }).macosDrv;
   };
 }
