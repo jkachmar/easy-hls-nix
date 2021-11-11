@@ -4,33 +4,31 @@
   # Pin unstable 'nixpkgs' by default.
   inputs.nixpkgs.url = "github:nixos/nixpkgs";
 
-  outputs = { self, nixpkgs }: {
-    defaultPackage.x86_64-linux =
-      let pkgs = import nixpkgs { system = "x86_64-linux"; };
-      in (pkgs.callPackage ./derivations.nix { }).nixosDrv;
-    defaultApp.x86_64-linux = {
+  outputs = { self, nixpkgs }:
+   let
+      # Generate a user-friendly version number.
+      version = builtins.substring 0 8 self.lastModifiedDate;
+      # System types to support.
+      supportedSystems = [ "x86_64-linux" "x86_64-darwin" ];
+      # Helper function to generate an attrset '{ x86_64-linux = f "x86_64-linux"; ... }'.
+      forAllSystems = f: nixpkgs.lib.genAttrs supportedSystems (system: f system);
+      # Nixpkgs instantiated for supported system types.
+      nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; overlays = [ self.overlay ]; });
+  in
+  {
+    overlay = final: prev: {};
+    defaultPackage = forAllSystems (system:
+      nixpkgsFor."${system}".callPackage ./default.nix { });
+    defaultApp = forAllSystems (system: {
       type = "app";
-      program = "${self.defaultPackage.x86_64-linux}/bin/haskell-language-server-wrapper";
-    };
-    devShell.x86_64-linux = import ./shell.nix {
-      pkgs = import nixpkgs { system = "x86_64-linux"; };
-    };
-    withGhcs.x86_64-linux = ghcVersions:
-      let pkgs = import nixpkgs { system = "x86_64-linux"; };
-      in (pkgs.callPackage ./derivations.nix { inherit ghcVersions; }).nixosDrv;
-
-    defaultPackage.x86_64-darwin =
-      let pkgs = import nixpkgs { system = "x86_64-darwin"; };
-      in (pkgs.callPackage ./derivations.nix { }).macosDrv;
-    defaultApp.x86_64-darwin = {
-      type = "app";
-      program = "${self.defaultPackage.x86_64-darwin}/bin/haskell-language-server-wrapper";
-    };
-    devShell.x86_64-darwin = import ./shell.nix {
-      pkgs = import nixpkgs { system = "x86_64-darwin"; };
-    };
-    withGhcs.x86_64-darwin = ghcVersions:
-      let pkgs = import nixpkgs { system = "x86_64-darwin"; };
-      in (pkgs.callPackage ./derivations.nix { inherit ghcVersions; }).macosDrv;
+      program = "${self.defaultPackage.${system}}/bin/haskell-language-server-wrapper";
+    });
+    devShell = forAllSystems (system: import ./shell.nix {
+      pkgs = nixpkgsFor."${system}";
+    });
+    withGhcs = ghcVersions: forAllSystems (system:
+      self.defaultPackage."${system}".overrideAttrs (old: {
+        inherit ghcVersions;
+      }));
   };
 }
