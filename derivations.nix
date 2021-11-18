@@ -4,13 +4,9 @@
 , stdenv
   # Optional override for the HLS binaries to support specific GHC versions.
 , ghcVersions ? [
-    "8.6.4"
     "8.6.5"
     "8.8.3"
     "8.8.4"
-    "8.10.2"
-    "8.10.3"
-    "8.10.4"
     "8.10.5"
     "8.10.6"
     "8.10.7"
@@ -26,7 +22,7 @@ let
   #############################################################################
 
   pname = "haskell-language-server";
-  version = "1.4.0";
+  version = "1.5.0";
   meta = {
     description = ''
       A language server that provides information about Haskell programs to
@@ -47,7 +43,7 @@ rec {
   #############################################################################
   nixosSrc = fetchzip {
     url = "https://github.com/haskell/haskell-language-server/releases/download/${version}/haskell-language-server-Linux-${version}.tar.gz";
-    sha256 = "1vzacm4pg6wqxz818zrki9rfswvvk9bcaz4bs88vgi8wljsq5y4w";
+    sha256 = "1cfqjdp43w3r9rs6w2x54kidll9j6q7521rymv81yaww6b1d4mg3";
     stripRoot = false;
   };
 
@@ -58,7 +54,7 @@ rec {
 
   macosSrc = fetchzip {
     url = "https://github.com/haskell/haskell-language-server/releases/download/${version}/haskell-language-server-macOS-${version}.tar.gz";
-    sha256 = "19aj9xacf0qpzhx197cbrc2h3ws8g9kz0p56dmnhsngiy1gsk2gy";
+    sha256 = "07731k2x10nqb8d2yzdbad4djmlmvhahrf3iw5kzr81y5xlw0ms5";
     stripRoot = false;
   };
 
