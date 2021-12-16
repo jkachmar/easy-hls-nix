@@ -22,7 +22,7 @@ let
   #############################################################################
 
   pname = "haskell-language-server";
-  version = "1.5.0";
+  version = "1.5.1";
   meta = {
     description = ''
       A language server that provides information about Haskell programs to
@@ -35,7 +35,6 @@ let
     platforms = [ "x86_64-darwin" "x86_64-linux" ];
   };
 
-
 in
 rec {
   #############################################################################
@@ -43,7 +42,7 @@ rec {
   #############################################################################
   nixosSrc = fetchzip {
     url = "https://github.com/haskell/haskell-language-server/releases/download/${version}/haskell-language-server-Linux-${version}.tar.gz";
-    sha256 = "1cfqjdp43w3r9rs6w2x54kidll9j6q7521rymv81yaww6b1d4mg3";
+    sha256 = "sha256-iUm49WDkoXstHJLq9ON0gh2P4uHu4jiKzRJmxf+LPjw=";
     stripRoot = false;
   };
 
@@ -54,7 +53,7 @@ rec {
 
   macosSrc = fetchzip {
     url = "https://github.com/haskell/haskell-language-server/releases/download/${version}/haskell-language-server-macOS-${version}.tar.gz";
-    sha256 = "07731k2x10nqb8d2yzdbad4djmlmvhahrf3iw5kzr81y5xlw0ms5";
+    sha256 = "sha256-HKy66VmaKy5kt7MquyuJNIAPHtk1Ls1UnzQMCeaHtak=";
     stripRoot = false;
   };
 
